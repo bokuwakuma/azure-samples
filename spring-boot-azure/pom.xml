@@ -60,7 +60,36 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- add from -->
+			<plugin>
+				<groupId>com.microsoft.azure</groupId>
+				<artifactId>azure-webapp-maven-plugin</artifactId>
+				<!-- check Maven Central for the latest version -->
+				<version>1.6.0</version>
+				<configuration>
+					<schemaVersion>v2</schemaVersion>
+					<resourceGroup>maven-projects</resourceGroup>
+					<appName>${project.artifactId}</appName>
+					<runtime>
+						<os>linux</os>
+						<javaVersion>jre8</javaVersion>
+						<webContainer>tomcat 8.5</webContainer>
+					</runtime>
+					<region>westus</region>
+					<javaVersion>1.8</javaVersion>
+					<deployment>
+						<resources>
+							<resource>
+								<directory>${project.basedir}/target</directory>
+								<includes>
+									<include>*.jar</include>
+								</includes>
+							</resource>
+						</resources>
+					</deployment>
+				</configuration>
+			</plugin>
+			<!-- add to -->
 		</plugins>
 	</build>
-
 </project>
